@@ -144,7 +144,7 @@ class Expo1900ViewController: UIViewController {
             return
         }
         
-        titleLabel.text = expositionData.title
+        titleLabel.text = expositionData.title.exposition
         imageView.image = UIImage(named: "poster")
         
         let visitorText = NSMutableAttributedString(string: "방문객 : ")
@@ -170,4 +170,3 @@ class Expo1900ViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
