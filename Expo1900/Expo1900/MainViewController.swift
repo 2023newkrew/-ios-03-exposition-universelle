@@ -37,6 +37,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         self.configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.configureController()
     }
 }
