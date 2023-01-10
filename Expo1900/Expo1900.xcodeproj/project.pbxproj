@@ -18,6 +18,7 @@
 		D7D7ABBD296D060500C89C1B /* KoreanExpositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D7ABBC296D060500C89C1B /* KoreanExpositionViewController.swift */; };
 		D7D7ABC2296D2B4A00C89C1B /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D7ABC1296D2B4A00C89C1B /* NSAttributedString+Extension.swift */; };
 		D7D7ABC4296D2B7F00C89C1B /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D7ABC3296D2B7F00C89C1B /* NSMutableAttributedString+Extension.swift */; };
+		D7D7ABC6296D2C3E00C89C1B /* ExpositionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D7ABC5296D2C3E00C89C1B /* ExpositionDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D7D7ABBC296D060500C89C1B /* KoreanExpositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanExpositionViewController.swift; sourceTree = "<group>"; };
 		D7D7ABC1296D2B4A00C89C1B /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		D7D7ABC3296D2B7F00C89C1B /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		D7D7ABC5296D2C3E00C89C1B /* ExpositionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				C79FF4B62589F401005FB0FD /* SceneDelegate.swift */,
 				C79FF4B82589F401005FB0FD /* Expo1900ViewController.swift */,
 				D7D7ABBC296D060500C89C1B /* KoreanExpositionViewController.swift */,
+				D7D7ABC5296D2C3E00C89C1B /* ExpositionDetailsViewController.swift */,
 				C79FF4BA2589F401005FB0FD /* Main.storyboard */,
 				C79FF4BD2589F404005FB0FD /* Assets.xcassets */,
 				C79FF4BF2589F404005FB0FD /* LaunchScreen.storyboard */,
@@ -170,6 +173,7 @@
 			files = (
 				D7D7ABBD296D060500C89C1B /* KoreanExpositionViewController.swift in Sources */,
 				C20F5DCB296C034600AD1AE1 /* ExpositionItem.swift in Sources */,
+				D7D7ABC6296D2C3E00C89C1B /* ExpositionDetailsViewController.swift in Sources */,
 				C79FF4B92589F401005FB0FD /* Expo1900ViewController.swift in Sources */,
 				C79FF4B52589F401005FB0FD /* AppDelegate.swift in Sources */,
 				C20F5DC9296C02EC00AD1AE1 /* ExpositionUniverselle.swift in Sources */,

@@ -64,7 +64,7 @@ class KoreanExpositionViewController: UIViewController {
 
 }
 
-extension KoreanExpositionViewController: UITableViewDataSource, UITableViewDelegate {
+extension KoreanExpositionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expositionItems.count
     }
@@ -87,5 +87,14 @@ extension KoreanExpositionViewController: UITableViewDataSource, UITableViewDele
         
         cell.accessoryType = .disclosureIndicator
         return cell
+    }
+}
+
+extension KoreanExpositionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ExpositionDetailsViewController()
+        vc.data = self.expositionItems[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.expositionTableView.deselectRow(at: indexPath, animated: true)
     }
 }
