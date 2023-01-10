@@ -78,5 +78,11 @@ extension EntryListViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let entryDetailViewController = EntryDetailViewController()
+        entryDetailViewController.configureContent(with: items[indexPath.row])
+        self.navigationController?.pushViewController(entryDetailViewController, animated: true)
+    }
 }
 
