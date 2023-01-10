@@ -172,22 +172,3 @@ class Expo1900ViewController: UIViewController {
     }
 }
 
-extension NSAttributedString {
-    static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
-        let mutableString = NSMutableAttributedString()
-        mutableString.append(lhs)
-        mutableString.append(rhs)
-        return mutableString
-    }
-}
-
-extension NSMutableAttributedString {
-    func applyFont(_ font: UIFont.TextStyle) -> NSAttributedString {
-        let range = NSRange(location: 0, length: self.string.count)
-        self.addAttribute(.font,
-                          value: UIFont.preferredFont(forTextStyle: font),
-                          range: range)
-        return self
-    }
-    
-}
