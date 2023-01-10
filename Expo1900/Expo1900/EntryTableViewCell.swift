@@ -29,6 +29,7 @@ class EntryTableViewCell: UITableViewCell {
         let label = UILabel()
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
         return label
 
     }()
@@ -37,7 +38,7 @@ class EntryTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifer)
         self.configureHierarchy()
         self.configureConstraints()
-        self.accessoryType = .checkmark
+        self.accessoryType = .disclosureIndicator
     }
 
     required init?(coder: NSCoder) {
@@ -69,10 +70,10 @@ class EntryTableViewCell: UITableViewCell {
             self.entryImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             self.entryImageView.widthAnchor.constraint(equalToConstant: 50),
             self.entryImageView.heightAnchor.constraint(equalTo: self.entryImageView.widthAnchor),
-            self.descriptionVerticalStackView.leadingAnchor.constraint(equalTo: self.entryImageView.trailingAnchor),
-            self.descriptionVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            self.descriptionVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            self.descriptionVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
+            self.descriptionVerticalStackView.leadingAnchor.constraint(equalTo: self.entryImageView.trailingAnchor, constant: 10),
+            self.descriptionVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            self.descriptionVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
+            self.descriptionVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10)
         ])
     }
 }
