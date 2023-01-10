@@ -18,6 +18,10 @@ class MainViewController: UIViewController {
         static let mainAssetName = "exposition_universelle_1900"
     }
     
+    @IBAction func entryButtonDidTap(_ sender: Any) {
+        self.presentEntryListViewController()
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleImageView: UIImageView!
     @IBOutlet weak var visitorLabel: UILabel!
@@ -33,6 +37,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         self.configure()
+        self.configureController()
     }
 }
 
@@ -58,6 +63,15 @@ extension MainViewController {
         self.leftFlageImageView.image = UIImage(named: Text.flag)
         self.seeEntriesButton.setTitle(Text.seeEntries, for: .normal)
         self.rightFlagImageView.image = UIImage(named: Text.flag)
+    }
+    
+    private func configureController() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    private func presentEntryListViewController() {
+        let entryListViewController = EntryListViewController()
+        self.navigationController?.pushViewController(entryListViewController, animated: true)
     }
 }
 
