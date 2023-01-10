@@ -29,6 +29,34 @@ class Expo1900ViewController: UIViewController {
     private lazy var durationLabel = UILabel()
     private lazy var descriptionLabel = UILabel()
     
+    private lazy var bottomTapStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    private lazy var bottomLeftFlagImageView = {
+        let imageView = UIImageView(image: UIImage(named: "flag"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    private lazy var bottomCenterButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("한국의 출품작 보러가기", for: .normal)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        return button
+    }()
+    private lazy var bottomRightFlagImageView = {
+        let imageView = UIImageView(image: UIImage(named: "flag"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private var expositionUniverselle: ExpositionUniverselle?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setHierarchy()
@@ -36,16 +64,28 @@ class Expo1900ViewController: UIViewController {
         setAttribute()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadJson()
+        applyData()
+    }
+    
     private func setHierarchy() {
         view.addSubview(scrollView)
         
         scrollView.addSubview(stackView)
         
+        [bottomLeftFlagImageView, bottomCenterButton, bottomRightFlagImageView]
+            .forEach { subView in
+                bottomTapStackView.addArrangedSubview(subView)
+            }
+        
         [titleLabel, imageView, visitorLabel,
-         locationLabel, durationLabel, descriptionLabel].forEach { subView in
-            subView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.addArrangedSubview(subView)
-        }
+         locationLabel, durationLabel, descriptionLabel, bottomTapStackView]
+            .forEach { subView in
+                subView.translatesAutoresizingMaskIntoConstraints = false
+                stackView.addArrangedSubview(subView)
+            }
     }
     
     private func setLayout() {
@@ -61,6 +101,11 @@ class Expo1900ViewController: UIViewController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         imageView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.4).isActive = true
+        
+        bottomRightFlagImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        bottomRightFlagImageView.heightAnchor.constraint(equalTo: bottomRightFlagImageView.widthAnchor, multiplier: 2/3).isActive = true
+        bottomLeftFlagImageView.widthAnchor.constraint(equalTo: bottomRightFlagImageView.widthAnchor).isActive = true
+        bottomLeftFlagImageView.heightAnchor.constraint(equalTo: bottomLeftFlagImageView.widthAnchor, multiplier: 2/3).isActive = true
     }
     
     private func setAttribute() {
@@ -73,5 +118,65 @@ class Expo1900ViewController: UIViewController {
         
         descriptionLabel.numberOfLines = 0
     }
+    
+    private func loadJson() {
+        guard let json = NSDataAsset(name: "exposition_universelle_1900") else {
+            return
+        }
+        let data = json.data
+        do {
+            self.expositionUniverselle = try JSONDecoder()
+                .decode(ExpositionUniverselle.self, from: data)
+        }
+        catch {
+            print(error.localizedDescription)
+            return
+        }
+    }
+    
+    private func applyData() {
+        guard let expositionData = self.expositionUniverselle else {
+            return
+        }
+        
+        titleLabel.text = expositionData.title
+        imageView.image = UIImage(named: "poster")
+        
+        let visitorText = NSMutableAttributedString(string: "방문객 : ")
+            .applyFont(.title3) + NSMutableAttributedString(string: "\(expositionData.visitors) 명")
+            .applyFont(.body)
+        let locationText = NSMutableAttributedString(string: "개최지 : ")
+            .applyFont(.title3) + NSMutableAttributedString(string: expositionData.location)
+            .applyFont(.body)
+        let durationText = NSMutableAttributedString(string: "개최 기간 : ")
+            .applyFont(.title3) + NSMutableAttributedString(string: expositionData.duration)
+            .applyFont(.body)
+        let descriptionText = NSMutableAttributedString(string: expositionData.description)
+            .applyFont(.body)
+        
+        visitorLabel.attributedText = visitorText
+        locationLabel.attributedText = locationText
+        durationLabel.attributedText = durationText
+        descriptionLabel.attributedText = descriptionText
+    }
 }
 
+extension NSAttributedString {
+    static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+        let mutableString = NSMutableAttributedString()
+        mutableString.append(lhs)
+        mutableString.append(rhs)
+        return mutableString
+    }
+}
+
+extension NSMutableAttributedString {
+    func applyFont(_ font: UIFont.TextStyle) -> NSAttributedString {
+        let range = NSRange(location: 0, length: self.string.count)
+        self.addAttribute(.font,
+                          value: UIFont.preferredFont(forTextStyle: font),
+                          range: range)
+        return self
+    }
+    
+}
