@@ -22,6 +22,7 @@ class ExpositionDetailsViewController: UIViewController {
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 15
+        
         return stackView
     }()
     
@@ -70,13 +71,13 @@ class ExpositionDetailsViewController: UIViewController {
     }
     
     private func setAttribute() {
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
         
-        guard let data = self.data else {
+        guard let data = data else {
             return
         }
         
-        self.title = data.name
+        title = data.name
         
         imageView.image = UIImage(named: data.imageName)
         imageView.contentMode = .scaleAspectFit

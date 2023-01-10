@@ -66,7 +66,7 @@ class Expo1900ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         loadJson()
         applyData()
     }
@@ -110,8 +110,7 @@ class Expo1900ViewController: UIViewController {
     }
     
     private func setAttribute() {
-//        self.navigationController?.navigationBar.topItem?.title = "메인"
-        self.title = "메인"
+        title = "메인"
         
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
@@ -131,7 +130,7 @@ class Expo1900ViewController: UIViewController {
         }
         let data = json.data
         do {
-            self.expositionUniverselle = try JSONDecoder()
+            expositionUniverselle = try JSONDecoder()
                 .decode(ExpositionUniverselle.self, from: data)
         }
         catch {
@@ -141,7 +140,7 @@ class Expo1900ViewController: UIViewController {
     }
     
     private func applyData() {
-        guard let expositionData = self.expositionUniverselle else {
+        guard let expositionData = expositionUniverselle else {
             return
         }
         
@@ -168,7 +167,7 @@ class Expo1900ViewController: UIViewController {
     
     @objc private func presentKoreanExposition(){
         let vc = KoreanExpositionViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

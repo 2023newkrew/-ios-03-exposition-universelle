@@ -12,6 +12,7 @@ class KoreanExpositionViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
         return tableView
     }()
     
@@ -19,32 +20,36 @@ class KoreanExpositionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
     
-        self.setAttribute()
-        self.setLayout()
+        setHierarchy()
+        setAttribute()
+        setLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
         
-        self.loadJson()
+        loadJson()
+    }
+    
+    private func setHierarchy() {
+        view.addSubview(expositionTableView)
     }
     
     private func setLayout() {
-        expositionTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        expositionTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        expositionTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        expositionTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        expositionTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        expositionTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        expositionTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        expositionTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     private func setAttribute() {
-        self.title = "한국의 출품작"
+        view.backgroundColor = .systemBackground
+        title = "한국의 출품작"
         
-        self.view.addSubview(expositionTableView)
-        self.expositionTableView.delegate = self
-        self.expositionTableView.dataSource = self
+        expositionTableView.delegate = self
+        expositionTableView.dataSource = self
     }
     
     private func loadJson() {
@@ -53,7 +58,7 @@ class KoreanExpositionViewController: UIViewController {
         }
         let data = json.data
         do {
-            self.expositionItems = try JSONDecoder()
+            expositionItems = try JSONDecoder()
                 .decode([ExpositionItem].self, from: data)
         }
         catch {
@@ -93,7 +98,7 @@ extension KoreanExpositionViewController: UITableViewDataSource {
 extension KoreanExpositionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ExpositionDetailsViewController(expositionItems[indexPath.row])
-        self.navigationController?.pushViewController(vc, animated: true)
-        self.expositionTableView.deselectRow(at: indexPath, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
+        expositionTableView.deselectRow(at: indexPath, animated: true)
     }
 }

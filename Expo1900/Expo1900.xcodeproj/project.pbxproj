@@ -58,6 +58,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C26DB9E2296D35C40040A8E6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C79FF4B82589F401005FB0FD /* Expo1900ViewController.swift */,
+				D7D7ABBC296D060500C89C1B /* KoreanExpositionViewController.swift */,
+				D7D7ABC5296D2C3E00C89C1B /* ExpositionDetailsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		C79FF4A82589F401005FB0FD = {
 			isa = PBXGroup;
 			children = (
@@ -77,13 +87,11 @@
 		C79FF4B32589F401005FB0FD /* Expo1900 */ = {
 			isa = PBXGroup;
 			children = (
+				C26DB9E2296D35C40040A8E6 /* ViewControllers */,
 				D7D7ABC0296D2B2D00C89C1B /* Extensions */,
 				C20F5DC7296C023B00AD1AE1 /* Models */,
 				C79FF4B42589F401005FB0FD /* AppDelegate.swift */,
 				C79FF4B62589F401005FB0FD /* SceneDelegate.swift */,
-				C79FF4B82589F401005FB0FD /* Expo1900ViewController.swift */,
-				D7D7ABBC296D060500C89C1B /* KoreanExpositionViewController.swift */,
-				D7D7ABC5296D2C3E00C89C1B /* ExpositionDetailsViewController.swift */,
 				C79FF4BA2589F401005FB0FD /* Main.storyboard */,
 				C79FF4BD2589F404005FB0FD /* Assets.xcassets */,
 				C79FF4BF2589F404005FB0FD /* LaunchScreen.storyboard */,
