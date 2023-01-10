@@ -66,6 +66,7 @@ class Expo1900ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         loadJson()
         applyData()
     }
@@ -109,6 +110,9 @@ class Expo1900ViewController: UIViewController {
     }
     
     private func setAttribute() {
+//        self.navigationController?.navigationBar.topItem?.title = "메인"
+        self.title = "메인"
+        
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         titleLabel.numberOfLines = 0
@@ -117,6 +121,8 @@ class Expo1900ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         
         descriptionLabel.numberOfLines = 0
+        
+        bottomCenterButton.addTarget(self, action: #selector(presentKoreanExposition), for: .touchUpInside)
     }
     
     private func loadJson() {
@@ -158,6 +164,11 @@ class Expo1900ViewController: UIViewController {
         locationLabel.attributedText = locationText
         durationLabel.attributedText = durationText
         descriptionLabel.attributedText = descriptionText
+    }
+    
+    @objc private func presentKoreanExposition(){
+        let vc = KoreanExpositionViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
