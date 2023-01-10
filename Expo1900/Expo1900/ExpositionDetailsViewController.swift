@@ -8,7 +8,7 @@
 import UIKit
 
 class ExpositionDetailsViewController: UIViewController {
-    var data: ExpositionItem?
+    private let data: ExpositionItem?
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -27,6 +27,15 @@ class ExpositionDetailsViewController: UIViewController {
     
     private lazy var imageView = UIImageView()
     private lazy var descriptionLabel = UILabel()
+    
+    init(_ data: ExpositionItem) {
+        self.data = data
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

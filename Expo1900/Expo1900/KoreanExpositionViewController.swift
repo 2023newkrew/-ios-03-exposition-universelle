@@ -92,8 +92,7 @@ extension KoreanExpositionViewController: UITableViewDataSource {
 
 extension KoreanExpositionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ExpositionDetailsViewController()
-        vc.data = self.expositionItems[indexPath.row]
+        let vc = ExpositionDetailsViewController(expositionItems[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
         self.expositionTableView.deselectRow(at: indexPath, animated: true)
     }
