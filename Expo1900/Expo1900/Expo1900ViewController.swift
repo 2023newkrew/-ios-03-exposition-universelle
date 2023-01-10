@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Expo1900ViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
