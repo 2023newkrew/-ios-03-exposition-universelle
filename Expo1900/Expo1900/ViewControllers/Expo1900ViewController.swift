@@ -78,13 +78,6 @@ class Expo1900ViewController: UIViewController {
     
     private var expositionUniverselle: ExpositionUniverselle?
     
-    private var expositionTitle: String {
-        guard let exposition = self.titleLabel.text else { return "" }
-        let sepa = exposition.split(separator: "(").map { String($0) }
-        if sepa.count != 2 { return exposition }
-        return sepa[0] + "\n(" + sepa[1]
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setHierarchy()
@@ -163,7 +156,7 @@ class Expo1900ViewController: UIViewController {
             return
         }
         
-        titleLabel.text = expositionTitle
+        titleLabel.text = expositionData.title.expositionTitle
         imageView.image = UIImage(named: "poster")
         
         let visitorText = NSMutableAttributedString(string: "방문객 : ")
@@ -187,5 +180,13 @@ class Expo1900ViewController: UIViewController {
     @objc private func presentKoreanExposition(){
         let vc = KoreanExpositionViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+private extension String {
+    var expositionTitle: String {
+        let sepa = self.split(separator: "(").map { String($0) }
+        if sepa.count != 2 { return self }
+        return sepa[0] + "\n(" + sepa[1]
     }
 }
