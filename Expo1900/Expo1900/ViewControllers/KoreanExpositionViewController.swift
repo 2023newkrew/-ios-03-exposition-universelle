@@ -8,10 +8,11 @@
 import UIKit
 
 class KoreanExpositionViewController: UIViewController {
-    private var expositionTableView = {
+    private let expositionTableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self,
+                           forCellReuseIdentifier: "expositionCell")
         
         return tableView
     }()
@@ -75,7 +76,8 @@ extension KoreanExpositionViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "expositionCell",
+                                                 for: indexPath)
         let item = expositionItems[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
