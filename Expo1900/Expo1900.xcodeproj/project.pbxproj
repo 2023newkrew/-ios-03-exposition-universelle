@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C20F5DC9296C02EC00AD1AE1 /* ExpositionUniverselle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F5DC8296C02EC00AD1AE1 /* ExpositionUniverselle.swift */; };
 		C20F5DCB296C034600AD1AE1 /* ExpositionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F5DCA296C034600AD1AE1 /* ExpositionItem.swift */; };
-		C26DB9E4296D374B0040A8E6 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26DB9E3296D374B0040A8E6 /* String+Extension.swift */; };
 		C79FF4B52589F401005FB0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FF4B42589F401005FB0FD /* AppDelegate.swift */; };
 		C79FF4B72589F401005FB0FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FF4B62589F401005FB0FD /* SceneDelegate.swift */; };
 		C79FF4B92589F401005FB0FD /* Expo1900ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FF4B82589F401005FB0FD /* Expo1900ViewController.swift */; };
@@ -25,7 +24,6 @@
 /* Begin PBXFileReference section */
 		C20F5DC8296C02EC00AD1AE1 /* ExpositionUniverselle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionUniverselle.swift; sourceTree = "<group>"; };
 		C20F5DCA296C034600AD1AE1 /* ExpositionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionItem.swift; sourceTree = "<group>"; };
-		C26DB9E3296D374B0040A8E6 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C79FF4B12589F401005FB0FD /* Expo1900.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expo1900.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79FF4B42589F401005FB0FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C79FF4B62589F401005FB0FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 			children = (
 				D7D7ABC1296D2B4A00C89C1B /* NSAttributedString+Extension.swift */,
 				D7D7ABC3296D2B7F00C89C1B /* NSMutableAttributedString+Extension.swift */,
-				C26DB9E3296D374B0040A8E6 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,7 +187,6 @@
 				C20F5DC9296C02EC00AD1AE1 /* ExpositionUniverselle.swift in Sources */,
 				C79FF4B72589F401005FB0FD /* SceneDelegate.swift in Sources */,
 				D7D7ABC4296D2B7F00C89C1B /* NSMutableAttributedString+Extension.swift in Sources */,
-				C26DB9E4296D374B0040A8E6 /* String+Extension.swift in Sources */,
 				D7D7ABC2296D2B4A00C89C1B /* NSAttributedString+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

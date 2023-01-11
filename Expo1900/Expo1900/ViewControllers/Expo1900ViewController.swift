@@ -7,13 +7,13 @@
 import UIKit
 
 class Expo1900ViewController: UIViewController {
-    private lazy var scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
     }()
-    private lazy var stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -22,40 +22,68 @@ class Expo1900ViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var titleLabel = UILabel()
-    private lazy var imageView = UIImageView()
-    private lazy var visitorLabel = UILabel()
-    private lazy var locationLabel = UILabel()
-    private lazy var durationLabel = UILabel()
-    private lazy var descriptionLabel = UILabel()
-    
-    private lazy var bottomTapStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        return stackView
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        return label
     }()
-    private lazy var bottomLeftFlagImageView = {
-        let imageView = UIImageView(image: UIImage(named: "flag"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    private lazy var bottomCenterButton = {
+    private let visitorLabel = UILabel()
+    private let locationLabel = UILabel()
+    private let durationLabel = UILabel()
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    private let bottomStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        
+        return stackView
+    }()
+    private let koreanFlagOnLeft = {
+        let imageView = UIImageView(image: UIImage(named: "flag"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        
+        return imageView
+    }()
+    private let seeKoreanExpositionButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("한국의 출품작 보러가기", for: .normal)
         button.setTitleColor(UIColor.systemBlue, for: .normal)
+        
         return button
     }()
-    private lazy var bottomRightFlagImageView = {
+    private let koreanFlagOnRight = {
         let imageView = UIImageView(image: UIImage(named: "flag"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        
         return imageView
     }()
     
     private var expositionUniverselle: ExpositionUniverselle?
+    
+    private var expositionTitle: String {
+        guard let exposition = self.titleLabel.text else { return "" }
+        let sepa = exposition.split(separator: "(").map { String($0) }
+        if sepa.count != 2 { return exposition }
+        return sepa[0] + "\n(" + sepa[1]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,13 +104,13 @@ class Expo1900ViewController: UIViewController {
         
         scrollView.addSubview(stackView)
         
-        [bottomLeftFlagImageView, bottomCenterButton, bottomRightFlagImageView]
+        [koreanFlagOnLeft, seeKoreanExpositionButton, koreanFlagOnRight]
             .forEach { subView in
-                bottomTapStackView.addArrangedSubview(subView)
+                bottomStackView.addArrangedSubview(subView)
             }
         
         [titleLabel, imageView, visitorLabel,
-         locationLabel, durationLabel, descriptionLabel, bottomTapStackView]
+         locationLabel, durationLabel, descriptionLabel, bottomStackView]
             .forEach { subView in
                 subView.translatesAutoresizingMaskIntoConstraints = false
                 stackView.addArrangedSubview(subView)
@@ -103,25 +131,16 @@ class Expo1900ViewController: UIViewController {
         
         imageView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.4).isActive = true
         
-        bottomRightFlagImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        bottomRightFlagImageView.heightAnchor.constraint(equalTo: bottomRightFlagImageView.widthAnchor, multiplier: 2/3).isActive = true
-        bottomLeftFlagImageView.widthAnchor.constraint(equalTo: bottomRightFlagImageView.widthAnchor).isActive = true
-        bottomLeftFlagImageView.heightAnchor.constraint(equalTo: bottomLeftFlagImageView.widthAnchor, multiplier: 2/3).isActive = true
+        koreanFlagOnRight.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        koreanFlagOnRight.heightAnchor.constraint(equalTo: koreanFlagOnRight.widthAnchor, multiplier: 2/3).isActive = true
+        koreanFlagOnLeft.widthAnchor.constraint(equalTo: koreanFlagOnRight.widthAnchor).isActive = true
+        koreanFlagOnLeft.heightAnchor.constraint(equalTo: koreanFlagOnLeft.widthAnchor, multiplier: 2/3).isActive = true
     }
     
     private func setAttribute() {
         title = "메인"
         
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
-        titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
-        
-        imageView.contentMode = .scaleAspectFit
-        
-        descriptionLabel.numberOfLines = 0
-        
-        bottomCenterButton.addTarget(self, action: #selector(presentKoreanExposition), for: .touchUpInside)
+        seeKoreanExpositionButton.addTarget(self, action: #selector(presentKoreanExposition), for: .touchUpInside)
     }
     
     private func loadJson() {
@@ -144,7 +163,7 @@ class Expo1900ViewController: UIViewController {
             return
         }
         
-        titleLabel.text = expositionData.title.exposition
+        titleLabel.text = expositionTitle
         imageView.image = UIImage(named: "poster")
         
         let visitorText = NSMutableAttributedString(string: "방문객 : ")
