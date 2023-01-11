@@ -8,15 +8,15 @@
 import UIKit
 
 class ExpositionDetailsViewController: UIViewController {
-    private let data: ExpositionItem?
+    private let data: ExpositionItem
 
-    private lazy var scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
     }()
-    private lazy var stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -26,8 +26,18 @@ class ExpositionDetailsViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var imageView = UIImageView()
-    private lazy var descriptionLabel = UILabel()
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        
+        return label
+    }()
     
     init(_ data: ExpositionItem) {
         self.data = data
@@ -73,17 +83,11 @@ class ExpositionDetailsViewController: UIViewController {
     private func setAttribute() {
         view.backgroundColor = .systemBackground
         
-        guard let data = data else {
-            return
-        }
-        
         title = data.name
         
         imageView.image = UIImage(named: data.imageName)
-        imageView.contentMode = .scaleAspectFit
         
         descriptionLabel.attributedText = NSMutableAttributedString(string: data.description)
             .applyFont(.body)
-        descriptionLabel.numberOfLines = 0
     }
 }
