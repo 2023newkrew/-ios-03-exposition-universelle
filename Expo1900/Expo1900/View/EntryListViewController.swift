@@ -18,9 +18,25 @@ class EntryListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureController()
+        self.configureContent()
         self.configureHierarchy()
         self.configureConstraints()
         self.configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.entryListTableView.reloadData()
+    }
+    
+    private func configureController() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.view.backgroundColor = .white
+        self.title = Text.navigationControllerName
+    }
+    
+    private func configureContent() {
         let result = ExpositionService.shared.fetchExpositionItemsData()
         switch result {
         case .success(let success):
@@ -28,13 +44,6 @@ class EntryListViewController: UIViewController {
         case .failure(let failure):
             print(failure)
         }
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.view.backgroundColor = .white
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.entryListTableView.reloadData()
     }
 
     private func configureHierarchy() {
@@ -68,7 +77,7 @@ extension EntryListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configureCell(with: self.items[indexPath.row])
+        cell.configureContent(with: self.items[indexPath.row])
         
         return cell
     }
