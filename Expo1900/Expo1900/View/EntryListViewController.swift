@@ -17,7 +17,7 @@ class EntryListViewController: UIViewController {
         self.configureHierarchy()
         self.configureConstraints()
         self.configureTableView()
-        let result = self.fetchExpositionItemsData()
+        let result = ExpositionService.shared.fetchExpositionItemsData()
         switch result {
         case .success(let success):
             self.items = success
@@ -51,16 +51,6 @@ class EntryListViewController: UIViewController {
         self.entryListTableView.delegate = self
         self.entryListTableView.dataSource = self
         self.entryListTableView.register(EntryTableViewCell.self, forCellReuseIdentifier: "entry")
-    }
-    
-    private func fetchExpositionItemsData() -> Result<[ExpositionItem], DecodingError> {
-        guard let data = NSDataAsset(name: "items")?.data else {
-            return .failure(.dataAssetConvertingFailure)
-        }
-        guard let product = try? JSONDecoder().decode([ExpositionItem].self, from: data) else {
-            return .failure(.decodingFailure)
-        }
-        return .success(product)
     }
 }
 

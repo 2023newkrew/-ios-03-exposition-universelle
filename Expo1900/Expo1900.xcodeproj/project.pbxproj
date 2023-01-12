@@ -13,6 +13,7 @@
 		C23A5953296D1E6B003E518F /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A5952296D1E6B003E518F /* EntryTableViewCell.swift */; };
 		C285762F296F939D00CEAEDE /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285762E296F939D00CEAEDE /* Int+Extensions.swift */; };
 		C2857631296F957000CEAEDE /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2857630296F957000CEAEDE /* NumberFormatter+Extensions.swift */; };
+		C2857633296F97C400CEAEDE /* ExpositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2857632296F97C400CEAEDE /* ExpositionService.swift */; };
 		C2C9A087296CF70D0008FEAA /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9A086296CF70D0008FEAA /* DecodingError.swift */; };
 		C2C9A089296D57FE0008FEAA /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9A088296D57FE0008FEAA /* EntryDetailViewController.swift */; };
 		C79FF4B52589F401005FB0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FF4B42589F401005FB0FD /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		C23A5952296D1E6B003E518F /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 		C285762E296F939D00CEAEDE /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		C2857630296F957000CEAEDE /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		C2857632296F97C400CEAEDE /* ExpositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionService.swift; sourceTree = "<group>"; };
 		C2C9A086296CF70D0008FEAA /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		C2C9A088296D57FE0008FEAA /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 		C79FF4B12589F401005FB0FD /* Expo1900.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expo1900.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,42 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C2857634296F9A3C00CEAEDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C2857630296F957000CEAEDE /* NumberFormatter+Extensions.swift */,
+				C285762E296F939D00CEAEDE /* Int+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C2857635296F9A6200CEAEDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C79FF4B82589F401005FB0FD /* MainViewController.swift */,
+				C23A5950296D1E18003E518F /* EntryListViewController.swift */,
+				C23A5952296D1E6B003E518F /* EntryTableViewCell.swift */,
+				C2C9A088296D57FE0008FEAA /* EntryDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2857636296F9B5700CEAEDE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C2857632296F97C400CEAEDE /* ExpositionService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C2857637296F9B6800CEAEDE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C2C9A086296CF70D0008FEAA /* DecodingError.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		C79FF4A82589F401005FB0FD = {
 			isa = PBXGroup;
 			children = (
@@ -81,19 +119,16 @@
 		C79FF4B32589F401005FB0FD /* Expo1900 */ = {
 			isa = PBXGroup;
 			children = (
-				C2857630296F957000CEAEDE /* NumberFormatter+Extensions.swift */,
-				C285762E296F939D00CEAEDE /* Int+Extensions.swift */,
-				C23A5925296BCD46003E518F /* Model */,
 				C79FF4B42589F401005FB0FD /* AppDelegate.swift */,
 				C79FF4B62589F401005FB0FD /* SceneDelegate.swift */,
-				C79FF4B82589F401005FB0FD /* MainViewController.swift */,
-				C23A5950296D1E18003E518F /* EntryListViewController.swift */,
-				C23A5952296D1E6B003E518F /* EntryTableViewCell.swift */,
-				C2C9A088296D57FE0008FEAA /* EntryDetailViewController.swift */,
-				C2C9A086296CF70D0008FEAA /* DecodingError.swift */,
+				C2857635296F9A6200CEAEDE /* View */,
+				C2857634296F9A3C00CEAEDE /* Extensions */,
+				C23A5925296BCD46003E518F /* Model */,
+				C2857636296F9B5700CEAEDE /* Service */,
+				C2857637296F9B6800CEAEDE /* Utils */,
 				C79FF4BA2589F401005FB0FD /* Main.storyboard */,
-				C79FF4BD2589F404005FB0FD /* Assets.xcassets */,
 				C79FF4BF2589F404005FB0FD /* LaunchScreen.storyboard */,
+				C79FF4BD2589F404005FB0FD /* Assets.xcassets */,
 				C79FF4C22589F404005FB0FD /* Info.plist */,
 			);
 			path = Expo1900;
@@ -174,6 +209,7 @@
 				C79FF4B92589F401005FB0FD /* MainViewController.swift in Sources */,
 				C79FF4B52589F401005FB0FD /* AppDelegate.swift in Sources */,
 				C2C9A087296CF70D0008FEAA /* DecodingError.swift in Sources */,
+				C2857633296F97C400CEAEDE /* ExpositionService.swift in Sources */,
 				C79FF4B72589F401005FB0FD /* SceneDelegate.swift in Sources */,
 				C23A5951296D1E18003E518F /* EntryListViewController.swift in Sources */,
 				C2C9A089296D57FE0008FEAA /* EntryDetailViewController.swift in Sources */,

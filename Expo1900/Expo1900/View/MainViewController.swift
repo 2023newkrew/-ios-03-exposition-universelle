@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     func configure() {
-        let expositionIntroduction = fetchExpositionIntroductionData()
+        let expositionIntroduction = ExpositionService.shared.fetchExpositionIntroductionData()
         switch expositionIntroduction {
         case .success(let result):
             configureObjects(expositionIntoroduction: result)
@@ -76,17 +76,5 @@ extension MainViewController {
     private func presentEntryListViewController() {
         let entryListViewController = EntryListViewController()
         self.navigationController?.pushViewController(entryListViewController, animated: true)
-    }
-}
-
-extension MainViewController {
-    func fetchExpositionIntroductionData() -> Result<ExpositionIntroduction, DecodingError> {
-        guard let data = NSDataAsset(name: Text.mainAssetName)?.data else {
-            return .failure(.dataAssetConvertingFailure)
-        }
-        guard let product = try? JSONDecoder().decode(ExpositionIntroduction.self, from: data) else {
-            return .failure(.decodingFailure)
-        }
-        return .success(product)
     }
 }
