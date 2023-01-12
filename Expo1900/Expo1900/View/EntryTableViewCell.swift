@@ -8,7 +8,7 @@
 import UIKit
 
 class EntryTableViewCell: UITableViewCell {
-    enum Constant {
+    private enum Constant {
         static let numberOfShortDescriptionLabelLines = 0
         static let entryImageViewLeadingDifference = CGFloat(10)
         static let entryImageViewWidth = CGFloat(60)

@@ -7,7 +7,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    enum Text {
+    private enum Text {
         static let visitor = "방문객 : "
         static let personnel = " 명"
         static let unfoundPersonnel = "-"
@@ -20,25 +20,24 @@ class MainViewController: UIViewController {
         static let navigationControllerTitle = "메인"
     }
     
-    @IBAction func entryButtonDidTap(_ sender: Any) {
+    @IBAction private func entryButtonDidTap(_ sender: Any) {
         self.presentEntryListViewController()
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleImageView: UIImageView!
-    @IBOutlet weak var visitorLabel: UILabel!
-    @IBOutlet weak var placeLabel: UILabel!
-    @IBOutlet weak var periodLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    
-    @IBOutlet weak var leftFlageImageView: UIImageView!
-    @IBOutlet weak var seeEntriesButton: UIButton!
-    @IBOutlet weak var rightFlagImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleImageView: UIImageView!
+    @IBOutlet private weak var visitorLabel: UILabel!
+    @IBOutlet private weak var placeLabel: UILabel!
+    @IBOutlet private weak var periodLabel: UILabel!
+    @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var leftFlageImageView: UIImageView!
+    @IBOutlet private weak var seeEntriesButton: UIButton!
+    @IBOutlet private weak var rightFlagImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configure()
+        self.configureContent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,17 +46,17 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    func configure() {
+    private func configureContent() {
         let expositionIntroduction = ExpositionService.shared.fetchExpositionIntroductionData()
         switch expositionIntroduction {
         case .success(let result):
-            configureObjects(expositionIntoroduction: result)
+            self.configureObjects(expositionIntoroduction: result)
         case .failure(let error):
             print(error)
         }
     }
     
-    func configureObjects(expositionIntoroduction: ExpositionIntroduction) {
+    private func configureObjects(expositionIntoroduction: ExpositionIntroduction) {
         self.titleLabel.text = expositionIntoroduction.title
         self.titleImageView.image = UIImage(named: Text.poster)
         self.visitorLabel.text = Text.visitor + (expositionIntoroduction.visitors.decimalExpression ?? Text.unfoundPersonnel) + Text.personnel

@@ -8,7 +8,7 @@
 import UIKit
 
 class EntryDetailViewController: UIViewController {
-    enum Constant {
+    private enum Constant {
         static let horizontalStackViewSpacing = CGFloat(15)
         static let horizontalStackViewDirectionalLayoutMargin = CGFloat(15)
         static let imageViewHeight = CGFloat(150)
@@ -54,6 +54,12 @@ class EntryDetailViewController: UIViewController {
 }
 
 extension EntryDetailViewController {
+    func configureContent(with item: ExpositionItem) {
+        self.navigationItem.title = item.name
+        self.imageView.image = UIImage(named: item.imageName)
+        self.descriptionTextView.text = item.description
+    }
+    
     private func configureHierarchy() {
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.horizontalStackView)
@@ -86,11 +92,5 @@ extension EntryDetailViewController {
         self.navigationController?.navigationBar.backgroundColor = .white
         self.view.backgroundColor = .white
         
-    }
-    
-    func configureContent(with item: ExpositionItem) {
-        self.navigationItem.title = item.name
-        self.imageView.image = UIImage(named: item.imageName)
-        self.descriptionTextView.text = item.description
     }
 }

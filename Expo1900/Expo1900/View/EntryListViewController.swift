@@ -8,13 +8,13 @@
 import UIKit
 
 class EntryListViewController: UIViewController {
-    enum Text {
+    private enum Text {
         static let navigationControllerName = "한국의 출품작"
         static let cellName = "cell"
     }
     
-    let entryListTableView: UITableView = UITableView()
-    var items: [ExpositionItem] = []
+    private let entryListTableView: UITableView = UITableView()
+    private var items: [ExpositionItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
