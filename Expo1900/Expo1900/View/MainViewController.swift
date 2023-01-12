@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
         static let poster = "poster"
         static let flag = "flag"
         static let mainAssetName = "exposition_universelle_1900"
+        static let navigationControllerTitle = "메인"
     }
     
     @IBAction func entryButtonDidTap(_ sender: Any) {
@@ -71,6 +72,7 @@ extension MainViewController {
     
     private func configureController() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.title = Text.navigationControllerTitle
     }
     
     private func presentEntryListViewController() {
