@@ -56,7 +56,7 @@ extension MainViewController {
         }
     }
     
-    private func configureObjects(expositionIntoroduction: ExpositionIntroduction) {
+    func configureObjects(expositionIntoroduction: ExpositionIntroduction) {
         self.titleLabel.text = expositionIntoroduction.title
         self.titleImageView.image = UIImage(named: Text.poster)
         self.visitorLabel.text = Text.visitor + (expositionIntoroduction.visitors.decimalExpression ?? Text.unfoundPersonnel) + Text.personnel
