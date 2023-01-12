@@ -9,10 +9,11 @@ import UIKit
 class MainViewController: UIViewController {
     enum Text {
         static let visitor = "방문객 : "
+        static let personnel = " 명"
+        static let unfoundPersonnel = "-"
         static let place = "개최지 : "
         static let period = "개최기간 : "
         static let seeEntries = "한국의 출품작 보러가기"
-        
         static let poster = "poster"
         static let flag = "flag"
         static let mainAssetName = "exposition_universelle_1900"
@@ -58,7 +59,7 @@ extension MainViewController {
     func configureObjects(expositionIntoroduction: ExpositionIntroduction) {
         self.titleLabel.text = expositionIntoroduction.title
         self.titleImageView.image = UIImage(named: Text.poster)
-        self.visitorLabel.text = Text.visitor + String(expositionIntoroduction.visitors)
+        self.visitorLabel.text = Text.visitor + (expositionIntoroduction.visitors.decimalExpression ?? Text.unfoundPersonnel) + Text.personnel
         self.placeLabel.text = Text.place +  expositionIntoroduction.location
         self.periodLabel.text = Text.period + expositionIntoroduction.duration
         self.descriptionTextView.text = expositionIntoroduction.description
