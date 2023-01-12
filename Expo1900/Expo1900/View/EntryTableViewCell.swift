@@ -8,6 +8,12 @@
 import UIKit
 
 class EntryTableViewCell: UITableViewCell {
+    enum Constant {
+        static let numberOfShortDescriptionLabelLines = 0
+        static let entryImageViewLeadingDifference = CGFloat(10)
+        static let entryImageViewWidth = CGFloat(60)
+        static let descriptionStackViewMargin = CGFloat(10)
+    }
     
     private let entryImageView: UIImageView = UIImageView(frame: .zero)
     private let descriptionVerticalStackView: UIStackView = {
@@ -29,7 +35,7 @@ class EntryTableViewCell: UITableViewCell {
         let label = UILabel()
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .body)
-        label.numberOfLines = 0
+        label.numberOfLines = Constant.numberOfShortDescriptionLabelLines
         return label
 
     }()
@@ -70,14 +76,14 @@ class EntryTableViewCell: UITableViewCell {
         self.shortDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.entryImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            self.entryImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Constant.entryImageViewLeadingDifference),
             self.entryImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
-            self.entryImageView.widthAnchor.constraint(equalToConstant: 50),
+            self.entryImageView.widthAnchor.constraint(equalToConstant: Constant.entryImageViewWidth),
             self.entryImageView.heightAnchor.constraint(equalTo: self.entryImageView.widthAnchor),
-            self.descriptionVerticalStackView.leadingAnchor.constraint(equalTo: self.entryImageView.trailingAnchor, constant: 10),
-            self.descriptionVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            self.descriptionVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
-            self.descriptionVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10)
+            self.descriptionVerticalStackView.leadingAnchor.constraint(equalTo: self.entryImageView.trailingAnchor, constant: Constant.descriptionStackViewMargin),
+            self.descriptionVerticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: Constant.descriptionStackViewMargin),
+            self.descriptionVerticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Constant.descriptionStackViewMargin),
+            self.descriptionVerticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Constant.descriptionStackViewMargin)
         ])
     }
 }
