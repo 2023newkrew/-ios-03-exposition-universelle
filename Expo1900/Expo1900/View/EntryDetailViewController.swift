@@ -8,15 +8,24 @@
 import UIKit
 
 class EntryDetailViewController: UIViewController {
+    enum Constant {
+        static let horizontalStackViewSpacing = CGFloat(15)
+        static let horizontalStackViewDirectionalLayoutMargin = CGFloat(15)
+        static let imageViewHeight = CGFloat(150)
+    }
+    
     private let scrollView = UIScrollView()
     private let horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center
-        stackView.spacing = 15
+        stackView.spacing = Constant.horizontalStackViewSpacing
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.directionalLayoutMargins = .init(top: 15, leading: 15, bottom: 15, trailing: 15)
+        stackView.directionalLayoutMargins = .init(top: Constant.horizontalStackViewDirectionalLayoutMargin,
+                                                   leading: Constant.horizontalStackViewDirectionalLayoutMargin,
+                                                   bottom: Constant.horizontalStackViewDirectionalLayoutMargin,
+                                                   trailing: Constant.horizontalStackViewDirectionalLayoutMargin)
         return stackView
     }()
     private let imageView: UIImageView = {
@@ -69,7 +78,7 @@ extension EntryDetailViewController {
             self.horizontalStackView.trailingAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.trailingAnchor),
             self.horizontalStackView.leadingAnchor.constraint(equalTo: self.scrollView.frameLayoutGuide.leadingAnchor),
             self.horizontalStackView.trailingAnchor.constraint(equalTo: self.scrollView.frameLayoutGuide.trailingAnchor),
-            self.imageView.heightAnchor.constraint(equalToConstant: 150)
+            self.imageView.heightAnchor.constraint(equalToConstant: Constant.imageViewHeight)
         ])
     }
     
