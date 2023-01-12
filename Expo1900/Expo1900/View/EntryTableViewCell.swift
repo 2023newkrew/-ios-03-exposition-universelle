@@ -38,17 +38,21 @@ class EntryTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifer)
         self.configureHierarchy()
         self.configureConstraints()
-        self.accessoryType = .disclosureIndicator
+        self.configureCell()
     }
 
     required init?(coder: NSCoder) {
         fatalError()
     }
     
-    func configureCell(with item: ExpositionItem) {
+    func configureContent(with item: ExpositionItem) {
         self.entryImageView.image = UIImage(named: "\(item.imageName)")
         self.titleLabel.text = item.name
         self.shortDescriptionLabel.text = item.shortDescription
+    }
+    
+    private func configureCell() {
+        self.accessoryType = .disclosureIndicator
     }
     
     private func configureHierarchy() {
