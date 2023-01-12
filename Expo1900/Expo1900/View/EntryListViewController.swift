@@ -8,6 +8,10 @@
 import UIKit
 
 class EntryListViewController: UIViewController {
+    enum Text {
+        static let navigationControllerName = "한국의 출품작"
+        static let cellName = "cell"
+    }
     
     let entryListTableView: UITableView = UITableView()
     var items: [ExpositionItem] = []
@@ -50,7 +54,7 @@ class EntryListViewController: UIViewController {
     private func configureTableView() {
         self.entryListTableView.delegate = self
         self.entryListTableView.dataSource = self
-        self.entryListTableView.register(EntryTableViewCell.self, forCellReuseIdentifier: "entry")
+        self.entryListTableView.register(EntryTableViewCell.self, forCellReuseIdentifier: Text.cellName)
     }
 }
 
@@ -60,7 +64,7 @@ extension EntryListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "entry") as? EntryTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Text.cellName) as? EntryTableViewCell else {
             return UITableViewCell()
         }
         
