@@ -53,6 +53,13 @@ class ExpositionDetailsViewController: UIViewController {
         setAttribute()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.mainRotateLock = false
+    }
+    
     override func viewWillLayoutSubviews() {
         clearHierarchy()
         switch UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height {

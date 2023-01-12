@@ -105,6 +105,10 @@ class Expo1900ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.mainRotateLock = true
         navigationController?.isNavigationBarHidden = true
         loadJson()
         applyData()
