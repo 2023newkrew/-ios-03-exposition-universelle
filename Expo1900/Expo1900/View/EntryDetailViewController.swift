@@ -17,7 +17,6 @@ class EntryDetailViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center
         stackView.spacing = Constant.horizontalStackViewSpacing
@@ -96,11 +95,15 @@ extension EntryDetailViewController {
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
+        let imageViewWidthConstraint = self.imageView.widthAnchor.constraint(equalToConstant: Constant.imageViewWidthAndHeight)
+        imageViewWidthConstraint.priority = .defaultHigh
+        
         NSLayoutConstraint.activate([
             self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            
             self.stackView.topAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.topAnchor),
             self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.bottomAnchor),
             self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.leadingAnchor),
@@ -108,7 +111,7 @@ extension EntryDetailViewController {
             self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.frameLayoutGuide.leadingAnchor),
             self.stackView.trailingAnchor.constraint(equalTo: self.scrollView.frameLayoutGuide.trailingAnchor),
             self.imageView.heightAnchor.constraint(equalToConstant: Constant.imageViewWidthAndHeight),
-            self.imageView.widthAnchor.constraint(equalToConstant: Constant.imageViewWidthAndHeight)
+            imageViewWidthConstraint
         ])
     }
     
