@@ -12,10 +12,6 @@ final class ExpositionService {
         static let mainAssetName = "exposition_universelle_1900"
         static let itemsAssetName = "items"
     }
-    
-    static let shared = ExpositionService()
-    
-    private init() { }
 
     func fetchExpositionIntroductionData() -> Result<ExpositionIntroduction, DecodingError> {
         guard let data = NSDataAsset(name: Text.mainAssetName)?.data else {

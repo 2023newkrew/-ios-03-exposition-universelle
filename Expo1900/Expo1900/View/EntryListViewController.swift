@@ -14,6 +14,8 @@ final class EntryListViewController: UIViewController {
     }
     
     private let entryListTableView: UITableView = UITableView()
+    
+    private let expositionService: ExpositionService = ExpositionService()
     private var items: [ExpositionItem] = []
 
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ final class EntryListViewController: UIViewController {
     }
     
     private func configureContent() {
-        let result = ExpositionService.shared.fetchExpositionItemsData()
+        let result = self.expositionService.fetchExpositionItemsData()
         switch result {
         case .success(let success):
             self.items = success

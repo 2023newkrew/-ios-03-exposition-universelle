@@ -34,6 +34,8 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var seeEntriesButton: UIButton!
     @IBOutlet private weak var rightFlagImageView: UIImageView!
     
+    private let expositionService: ExpositionService = ExpositionService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +49,7 @@ final class MainViewController: UIViewController {
 
 extension MainViewController {
     private func configureContent() {
-        let expositionIntroduction = ExpositionService.shared.fetchExpositionIntroductionData()
+        let expositionIntroduction = self.expositionService.fetchExpositionIntroductionData()
         switch expositionIntroduction {
         case .success(let result):
             self.configureObjects(expositionIntoroduction: result)
