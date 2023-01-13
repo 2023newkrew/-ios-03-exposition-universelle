@@ -36,6 +36,10 @@ final class MainViewController: UIViewController {
     
     private let expositionService: ExpositionService = ExpositionService()
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
