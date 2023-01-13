@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EntryDetailViewController: UIViewController {
+final class EntryDetailViewController: UIViewController {
     private enum Constant {
         static let horizontalStackViewSpacing = CGFloat(15)
         static let horizontalStackViewDirectionalLayoutMargin = CGFloat(15)

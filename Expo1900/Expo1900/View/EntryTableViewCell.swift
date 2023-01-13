@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EntryTableViewCell: UITableViewCell {
+final class EntryTableViewCell: UITableViewCell {
     private enum Constant {
         static let numberOfShortDescriptionLabelLines = 0
         static let entryImageViewLeadingDifference = CGFloat(10)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExpositionService {
+final class ExpositionService {
     private enum Text {
         static let mainAssetName = "exposition_universelle_1900"
         static let itemsAssetName = "items"

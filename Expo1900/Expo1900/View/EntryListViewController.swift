@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EntryListViewController: UIViewController {
+final class EntryListViewController: UIViewController {
     private enum Text {
         static let navigationControllerName = "한국의 출품작"
         static let cellName = "cell"

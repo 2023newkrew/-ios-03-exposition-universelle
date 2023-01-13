@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     private enum Text {
         static let visitor = "방문객 : "
         static let personnel = " 명"
