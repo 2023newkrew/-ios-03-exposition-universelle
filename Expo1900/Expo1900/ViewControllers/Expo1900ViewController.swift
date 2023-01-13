@@ -108,7 +108,7 @@ class Expo1900ViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        appDelegate.mainRotateLock = true
+        appDelegate.landscapeRotateLock = true
         navigationController?.isNavigationBarHidden = true
         loadJson()
         applyData()

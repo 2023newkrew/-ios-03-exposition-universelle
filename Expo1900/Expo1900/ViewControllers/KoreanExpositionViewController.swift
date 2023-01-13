@@ -32,7 +32,7 @@ class KoreanExpositionViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        appDelegate.mainRotateLock = false
+        appDelegate.landscapeRotateLock = false
         navigationController?.isNavigationBarHidden = false
         
         loadJson()

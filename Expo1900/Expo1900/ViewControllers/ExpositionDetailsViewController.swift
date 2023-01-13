@@ -57,7 +57,7 @@ class ExpositionDetailsViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        appDelegate.mainRotateLock = false
+        appDelegate.landscapeRotateLock = false
     }
     
     override func viewWillLayoutSubviews() {
