@@ -41,10 +41,10 @@ final class EntryListViewController: UIViewController {
     private func configureContent() {
         let result = self.expositionService.fetchExpositionItemsData()
         switch result {
-        case .success(let success):
-            self.items = success
-        case .failure(let failure):
-            print(failure)
+        case .success(let items):
+            self.items = items
+        case .failure(let error):
+            print(error)
         }
     }
 

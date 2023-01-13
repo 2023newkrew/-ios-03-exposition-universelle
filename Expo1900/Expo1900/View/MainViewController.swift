@@ -49,10 +49,10 @@ final class MainViewController: UIViewController {
 
 extension MainViewController {
     private func configureContent() {
-        let expositionIntroduction = self.expositionService.fetchExpositionIntroductionData()
-        switch expositionIntroduction {
-        case .success(let result):
-            self.configureObjects(expositionIntoroduction: result)
+        let result = self.expositionService.fetchExpositionIntroductionData()
+        switch result {
+        case .success(let introduction):
+            self.configureObjects(expositionIntoroduction: introduction)
         case .failure(let error):
             print(error)
         }
