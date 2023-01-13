@@ -39,6 +39,7 @@ final class EntryDetailViewController: UIViewController {
         textView.isUserInteractionEnabled = false
         textView.textAlignment = .justified
         textView.font = .preferredFont(forTextStyle: .body)
+        textView.adjustsFontForContentSizeCategory = true
         return textView
     }()
 
