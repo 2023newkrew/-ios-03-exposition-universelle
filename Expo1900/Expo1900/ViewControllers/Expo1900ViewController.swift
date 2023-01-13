@@ -16,7 +16,7 @@ class Expo1900ViewController: UIViewController {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 15
         return stackView
@@ -36,38 +36,49 @@ class Expo1900ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    private let visitorLabel = UILabel()
-    private let locationLabel = UILabel()
-    private let durationLabel = UILabel()
+    private let visitorLabel = {
+        let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    private let locationLabel = {
+        let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    private let durationLabel = {
+        let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
     private let descriptionLabel: UILabel = {
         let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
-        
         return label
     }()
     
     private let bottomStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.contentMode = .scaleToFill
+        stackView.alignment = .center
         stackView.spacing = 10
-        
         return stackView
     }()
     private let koreanFlagOnLeft = {
         let imageView = UIImageView(image: UIImage(named: "flag"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        
         return imageView
     }()
-    private let seeKoreanExpositionButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("한국의 출품작 보러가기", for: .normal)
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
-        
-        return button
-    }()
+    private let seeKoreanExpositionButton = DynamicTitleButton(string: "한국의 출품작 보러가기", font: .body)
     private let koreanFlagOnRight = {
         let imageView = UIImageView(image: UIImage(named: "flag"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +98,10 @@ class Expo1900ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.landscapeRotateLock = true
         navigationController?.isNavigationBarHidden = true
         loadJson()
         applyData()
@@ -123,6 +138,7 @@ class Expo1900ViewController: UIViewController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         imageView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.4).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         koreanFlagOnRight.widthAnchor.constraint(equalToConstant: 50).isActive = true
         koreanFlagOnRight.heightAnchor.constraint(equalTo: koreanFlagOnRight.widthAnchor, multiplier: 2/3).isActive = true
