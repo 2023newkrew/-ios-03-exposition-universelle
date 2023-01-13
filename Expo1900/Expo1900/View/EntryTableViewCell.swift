@@ -37,7 +37,6 @@ final class EntryTableViewCell: UITableViewCell {
         label.font = .preferredFont(forTextStyle: .body)
         label.numberOfLines = Constant.numberOfShortDescriptionLabelLines
         return label
-
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier reuseIdentifer: String?) {
